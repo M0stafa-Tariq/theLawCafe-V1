@@ -34,11 +34,11 @@ export const signUp = async (req, res, next) => {
   const message = signUpTemp(
     `${req.protocol}://${req.headers.host}/auth/verify-email?token=${usertoken}`
   );
-  
+
   const isEmailSent = await sendEmailService({
     to: email,
     subject: "Account Activation",
-    message
+    message,
   });
   // 4- check if email is sent successfully
   if (!isEmailSent) {
@@ -177,12 +177,12 @@ export const forgetPassword = async (req, res, next) => {
   );
   //generate reset password link
   const resetPasswordLink = `${req.protocol}://${req.headers.host}/auth/reset/${token}`;
-  const message = resetPassTemp(resetPasswordLink)
+  const message = resetPassTemp(resetPasswordLink);
   //sent email to reset the new password
   const isEmailSent = await sendEmailService({
     to: email,
     subject: "Reset Passowrd",
-    message
+    message,
   });
   // check if email is sent successfully
   if (!isEmailSent) {
@@ -198,9 +198,16 @@ export const forgetPassword = async (req, res, next) => {
     },
     { new: true }
   );
+  if(!userUpdates)return next(new Error("There is an error please try again!"))
 
   //send response
-  return res.status(200).json({ success: true,message:"" });
+  return res
+    .status(200)
+    .json({
+      success: true,
+      message:
+        "The code has been sent successfully, please check your account!",
+    });
 };
 
 // ========================================= Reset Password ================================//
