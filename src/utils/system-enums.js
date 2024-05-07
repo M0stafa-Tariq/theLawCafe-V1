@@ -5,12 +5,6 @@ export const systemRoles = {
   ADMIN: "admin",
 };
 
-// gender types
-export const genderType = {
-  MALE:"male",
-  FEMALE:"female"
-}
-
 //Payment method
 export const paymentMethod = {
   CASH: "Cash",

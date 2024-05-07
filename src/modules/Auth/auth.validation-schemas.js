@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { genderType, systemRoles } from "../../utils/system-enums.js";
+import { systemRoles } from "../../utils/system-enums.js";
 
 export const signUpSchema = {
   body: Joi.object({
@@ -17,7 +17,6 @@ export const signUpSchema = {
     role: Joi.string()
       .valid(systemRoles.ADMIN, systemRoles.CLIENTE, systemRoles.LAWYER)
       .default(systemRoles.CLIENTE),
-    gender: Joi.string().valid(genderType.MALE, genderType.FEMALE).required(),
   }).with("password", "confirmPassword"),
 };
 

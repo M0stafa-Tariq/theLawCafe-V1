@@ -1,3 +1,5 @@
+import cors from "cors"
+
 import db_connection from "../DB/connection.js";
 import { globalResponse } from "./middlewares/global-response.middleware.js";
 import { rollbackSavedDocuments } from "./middlewares/rollback-save-documents.middleware.js";
@@ -9,6 +11,8 @@ export const initiateApp = async (app, express) => {
   const port = process.env.PORT;
 
   app.use(express.json());
+
+  app.use(cors())
 
   await db_connection();
 

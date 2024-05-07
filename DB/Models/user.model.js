@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { genderType, systemRoles } from "../../src/utils/system-enums.js";
+import { systemRoles } from "../../src/utils/system-enums.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -43,12 +43,6 @@ const userSchema = new mongoose.Schema(
       type: Number,
       min: 21,
       max: 100,
-    },
-
-    gender: {
-      type: String,
-      enum: Object.values(genderType),
-      required: true,
     },
 
     isEmailVerified: {
