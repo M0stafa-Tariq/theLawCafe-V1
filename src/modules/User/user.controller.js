@@ -7,7 +7,7 @@ import { systemRoles } from "../../utils/system-enums.js";
 //============================================ update user ============================================//
 export const updateUser = async (req, res, next) => {
   // 1- destructuring the request body
-  const { username, email, age, phoneNumbers, addresses } = req.body;
+  const { username, email, age, phoneNumber, address } = req.body;
   // 2- destructuring _id from the request authUser
   const { _id } = req.authUser;
   // 3- get user
@@ -65,12 +65,12 @@ export const updateUser = async (req, res, next) => {
     user.age = age;
   }
   // 7- check if the user want to update the phonNubmers field
-  if (phoneNumbers) {
-    user.phoneNumbers = phoneNumbers;
+  if (phoneNumber) {
+    user.phoneNumber = phoneNumber;
   }
-  // 8- check if the user want to update the addresses field
-  if (addresses) {
-    user.addresses = addresses;
+  // 8- check if the user want to update the address field
+  if (address) {
+    user.address = address;
   }
   // 9- save the user in DB
   await user.save();

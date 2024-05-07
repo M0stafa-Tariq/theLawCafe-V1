@@ -21,7 +21,7 @@ export const auth = (accessRoles) => {
       // user check
       const findUser = await User.findById(
         decodedData.id,
-        "username email role isLoggedIn"
+        "username email role isLoggedIn isDeleted"
       );
       if (!findUser)
         return next(new Error("please signUp first", { cause: 404 }));
@@ -32,6 +32,11 @@ export const auth = (accessRoles) => {
           message: "You must log in again ,try later!",
         });
       }
+      //if user soft delete his account
+      if (findUser.isDeleted)
+        return next(
+          new Error("Your account has already been deleted!", { cause: 400 })
+        );
       // auhtorization
       if (!accessRoles.includes(findUser.role))
         return next(new Error("unauthorized", { cause: 401 }));
