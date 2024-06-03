@@ -168,3 +168,20 @@ export const softDeleteUser = async (req, res, next) => {
     .status(200)
     .json({ success: true, message: "User deleted successfully!" });
 };
+
+//============================================ get all users ============================================//
+
+export const getAllUsers = async (req, res, next) => {
+  // 1- destructuring role from query
+  const { role } = req.query;
+  // 2- find users
+  const users = await User.find({role});
+  // 3- send respnse
+  res
+    .status(200)
+    .json({
+      success: true,
+      message: `get all ${role}s successfully!`,
+      data: users,
+    });
+};

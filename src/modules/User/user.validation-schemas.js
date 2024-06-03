@@ -30,3 +30,8 @@ export const getUserByIdSchema = {
     userId: generalValidationRule.dbId,
   }),
 };
+export const getAllUsersSchema = {
+  query: Joi.object({
+    role: Joi.string().valid(systemRoles.LAWYER, systemRoles.CLIENTE),
+  }),
+};

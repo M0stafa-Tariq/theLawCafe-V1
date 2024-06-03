@@ -43,4 +43,10 @@ router.get(
   asyncHandler(userController.getUserById)
 );
 
+router.get(
+  "/get-all-users",
+  auth(endPointsRoles.GET_USER_BY_ID),
+  validationMiddleware(validator.getAllUsersSchema),
+  asyncHandler(userController.getAllUsers)
+);
 export default router;
