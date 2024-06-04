@@ -32,6 +32,6 @@ export const getUserByIdSchema = {
 };
 export const getAllUsersSchema = {
   query: Joi.object({
-    role: Joi.string().valid(systemRoles.LAWYER, systemRoles.CLIENTE),
+    role: Joi.string().valid(systemRoles.LAWYER, systemRoles.CLIENTE).required(),
   }),
 };

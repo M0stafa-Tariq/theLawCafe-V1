@@ -31,20 +31,20 @@ router.patch(
 );
 
 router.get(
-  "/",
+  "/profileData",
   auth(endPointsRoles.GET_PROFILE_DATA),
   asyncHandler(userController.getProfileData)
 );
 
 router.get(
-  "/:userId",
+  "/getUserById/:userId",
   auth(endPointsRoles.GET_USER_BY_ID),
   validationMiddleware(validator.getUserByIdSchema),
   asyncHandler(userController.getUserById)
 );
 
 router.get(
-  "/get-all-users",
+  "/getAllUsers",
   auth(endPointsRoles.GET_USER_BY_ID),
   validationMiddleware(validator.getAllUsersSchema),
   asyncHandler(userController.getAllUsers)

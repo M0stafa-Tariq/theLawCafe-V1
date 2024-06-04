@@ -18,6 +18,7 @@ export const initiateApp = async (app, express) => {
 
   app.use("/auth", routers.authRouter);
   app.use("/user", routers.userRouter);
+  app.use("/case", routers.caseRouter);
 
   app.use("*", (req, res, next) => {
     res.status(404).json({ message: "Page not found!" });

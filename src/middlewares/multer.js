@@ -46,12 +46,12 @@ export const multerMiddleLocal = ({
   return file;
 };
 
-export const multerMiddleHost = ({ extensions = allowedExtensions.image }) => {
+export const multerMiddleHost = ({ extensions = allowedExtensions.document }) => {
   // diskStorage
   const storage = multer.diskStorage({
     filename: (req, file, cb) => {
       const uniqueFileName = generateUniqueString(6) + "_" + file.originalname;
-      cb(null, uniqueFileName);
+      cb(null, uniqueFileName); // ==> 1- rename file 2- save file 3- call next()
     },
   });
 
@@ -60,7 +60,7 @@ export const multerMiddleHost = ({ extensions = allowedExtensions.image }) => {
     if (extensions.includes(file.mimetype.split("/")[1])) {
       return cb(null, true);
     }
-    cb(new Error("Image format is not allowed!"), false);
+    cb(new Error("Ivalid format!"), false);
   };
 
   const file = multer({ fileFilter, storage });

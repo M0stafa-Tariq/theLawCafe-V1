@@ -175,13 +175,13 @@ export const getAllUsers = async (req, res, next) => {
   // 1- destructuring role from query
   const { role } = req.query;
   // 2- find users
-  const users = await User.find({role});
+  const users = await User.find({ role });
+  if (!users.length)
+    return next(new Error(`There are no ${role}s yet!`), { cause: 404 });
   // 3- send respnse
-  res
-    .status(200)
-    .json({
-      success: true,
-      message: `get all ${role}s successfully!`,
-      data: users,
-    });
+  res.status(200).json({
+    success: true,
+    message: `get all ${role}s successfully!`,
+    data: users,
+  });
 };
