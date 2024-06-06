@@ -147,6 +147,7 @@ export const signIn = async (req, res, next) => {
     message: "User logged in successfully",
     data: {
       token,
+      role:user.role
     },
   });
 };
