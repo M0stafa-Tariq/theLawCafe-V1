@@ -17,7 +17,7 @@ router.post(
   multerMiddleHost({ extensions: allowedExtensions.document }).single(
     "caseFile"
   ),
-  validationMiddleware(validator.addCaseSchema),
+  // validationMiddleware(validator.addCaseSchema),
   asyncHandler(caseController.addCase)
 );
 
@@ -27,7 +27,7 @@ router.put(
   multerMiddleHost({ extensions: allowedExtensions.document }).single(
     "caseFile"
   ),
-  validationMiddleware(validator.updateCaseSchema),
+  // validationMiddleware(validator.updateCaseSchema),
   asyncHandler(caseController.updateCase)
 );
 
