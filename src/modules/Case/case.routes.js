@@ -10,7 +10,7 @@ import { allowedExtensions } from "../../utils/allowed-extensions.js";
 const router = Router();
 router.post(
   "/addCase",
-  auth(endPointsRoles.ADD_CASE),
+  // auth(endPointsRoles.ADD_CASE),
   multerMiddleHost({ extensions: allowedExtensions.document }).single(
     "caseFile"
   ),
