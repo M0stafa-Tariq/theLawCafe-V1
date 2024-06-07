@@ -46,7 +46,7 @@ router.get(
 router.get(
   "/getAllUsers",
   auth(endPointsRoles.GET_USER_BY_ID),
-  validationMiddleware(validator.getAllUsersSchema),
+  // validationMiddleware(validator.getAllUsersSchema),
   asyncHandler(userController.getAllUsers)
 );
 export default router;

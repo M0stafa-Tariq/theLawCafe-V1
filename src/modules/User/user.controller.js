@@ -172,16 +172,17 @@ export const softDeleteUser = async (req, res, next) => {
 //============================================ get all users ============================================//
 
 export const getAllUsers = async (req, res, next) => {
-  // 1- destructuring role from query
-  const { role } = req.query;
+  // 1- Define the roles you want to query (e.g., "lawyer" and "client")
+  const rolesToFind = ["lawyer", "client"];
   // 2- find users
-  const users = await User.find({ role });
+  const users = await User.find({ role: { $in: rolesToFind } });
   if (!users.length)
     return next(new Error(`There are no ${role}s yet!`), { cause: 404 });
   // 3- send respnse
   res.status(200).json({
     success: true,
-    message: `get all ${role}s successfully!`,
+    message: `Get all users with roles ${rolesToFind.join(", ")} successfully!`,
     data: users,
   });
 };
+
