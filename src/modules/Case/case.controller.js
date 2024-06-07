@@ -7,7 +7,7 @@ import { systemRoles } from "../../utils/system-enums.js";
 export const addCase = async (req, res, next) => {
   // 1- destructing the request body
   const { name, description, phoneNumber, numberOfCase } = req.body;
-  // const { _id } = req.authUser;
+  const { _id } = req.authUser;
   // 2- check if number of case is already exists
   const isNumberOfCase = await Case.findOne({ numberOfCase });
   if (isNumberOfCase)
@@ -29,7 +29,7 @@ export const addCase = async (req, res, next) => {
     phoneNumber,
     numberOfCase,
     caseFile: { secure_url, public_id },
-    // clientId: _id,
+    clientId: _id,
   };
 
   // 5- create Case
