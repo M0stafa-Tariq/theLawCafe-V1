@@ -49,4 +49,10 @@ router.get(
   // validationMiddleware(validator.getAllUsersSchema),
   asyncHandler(userController.getAllUsers)
 );
+
+router.get(
+  "/getAllLawyers",
+  auth(endPointsRoles.GET_USER_BY_ID),
+  asyncHandler(userController.getAllLawyers)
+);
 export default router;

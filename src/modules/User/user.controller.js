@@ -186,3 +186,20 @@ export const getAllUsers = async (req, res, next) => {
   });
 };
 
+
+//============================================ get all users ============================================//
+
+export const getAllLawyers = async (req, res, next) => {
+  
+  // 1- find users
+  const users = await User.find({ role:systemRoles.LAWYER });
+  if (!users.length)
+    return next(new Error(`There are no lawyers yet!`), { cause: 404 });
+  // 2- send respnse
+  res.status(200).json({
+    success: true,
+    message: `Get all users with lawyers successfully!`,
+    data: users,
+  });
+};
+
